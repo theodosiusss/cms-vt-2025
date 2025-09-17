@@ -15,10 +15,10 @@ final class PaperPlaneTournamentController extends AbstractController
     {
 
         if($count <= 0) {
-            return $this->render("main.html.twig", ["games" => $games->getGames()]);
+            return $this->render("paperplane/main.html.twig", ["games" => $games->getGames()]);
         }
         else {
-            return $this->render("detail.html.twig", ["game" => $games->getGames()[$count-1]]);
+            return $this->render("paperplane/detail.html.twig", ["game" => $games->getGames()[$count-1]]);
         }
     }
 }

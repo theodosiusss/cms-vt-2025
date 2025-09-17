@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>PapierfliegerTurnier</title>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+</head>
+<body>
+<header>
+    <div class="header-container">
+        <h1>✈️ Papierflieger Turnier 2025</h1>
+    </div>
+</header>
+
+<main>
+    {% block body %}
+    {% endblock %}
+</main>
+
+<footer>
+    <p>&copy; {{ "now"|date("Y") }} Papierflieger Turnier. Alle Rechte vorbehalten.</p>
+    <p>Gefaltet mit ❤️ und viel Papier.</p>
+</footer>
+</body>
+</html>

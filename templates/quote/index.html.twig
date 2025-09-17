@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Quote index{% endblock %}
+
+{% block body %}
+    <h1>Quote index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Quote</th>
+                <th>Character</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for quote in quotes %}
+            <tr>
+                <td>{{ quote.id }}</td>
+                <td>{{ quote.quote }}</td>
+                <td>{{ quote.character }}</td>
+                <td>
+                    <a href="{{ path('app_quote_show', {'id': quote.id}) }}">show</a>
+                    <a href="{{ path('app_quote_edit', {'id': quote.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_quote_new') }}">Create new</a>
+{% endblock %}
