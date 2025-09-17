@@ -1,0 +1,24 @@
+<?php
+
+namespace App\Controller;
+
+use App\Services\Games;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Attribute\Route;
+
+final class PaperPlaneTournamentController extends AbstractController
+{
+    #[Route('/results/{count}', name: 'app_paper_plane_tournament',defaults: ['count' => 0])]
+    public function getGame(int $count, Games $games): Response
+    {
+
+        if($count <= 0) {
+            return $this->render("main.html.twig", ["games" => $games->getGames()]);
+        }
+        else {
+            return $this->render("detail.html.twig", ["game" => $games->getGames()[$count-1]]);
+        }
+    }
+}

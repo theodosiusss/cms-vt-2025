@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    <a href="/results" class="back-link">← Zurück</a>
+    <h1>Detailübersicht</h1>
+
+    <div class="detail-box">
+        <h2>{{ game.getName() }}</h2>
+        <p><strong>Modell:</strong> {{ game.getPaperPlaneModel() }}</p>
+        <p><strong>Distanz:</strong> {{ game.getDistance()|number_format(2, ',', '.') }} m</p>
+        <p><strong>Dauer:</strong> {{ game.getDuration()|number_format(2, ',', '.') }} s</p>
+        <p><strong>Datum:</strong> {{ game.getDate()|date("d.m.Y") }}</p>
+    </div>
+
+{% endblock %}
