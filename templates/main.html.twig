@@ -5,8 +5,8 @@
 
     <div class="game-list">
         {% for game in games %}
-            <div class="game-card" onclick="location.href=' /results/{{ loop.index }}';">
-                <h2><a href="/results/{{ loop.index0 }}">{{ game.getName() }}</a></h2>
+            <div class="game-card" onclick="location.href='{{ path('app_paper_plane_tournament', { count: loop.index }) }}';">
+                <h2><a href="{{ path('app_paper_plane_tournament', { count: loop.index }) }}">{{ game.getName() }}</a></h2>
                 <p><strong>Modell:</strong> {{ game.getPaperPlaneModel() }}</p>
                 <p><strong>Distanz:</strong> {{ game.getDistance()|number_format(2, ',', '.') }} m</p>
                 <p><strong>Dauer:</strong> {{ game.getDuration()|number_format(2, ',', '.') }} s</p>
