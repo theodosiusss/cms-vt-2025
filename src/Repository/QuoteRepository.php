@@ -16,6 +16,28 @@ class QuoteRepository extends ServiceEntityRepository
         parent::__construct($registry, Quote::class);
     }
 
+    public function findAllOrderedByMovieName(): array
+    {
+        return $this->createQueryBuilder('q')
+            ->leftJoin('q.Movie', 'm')
+            ->addSelect('m')
+            ->orderBy('m.name', 'ASC')
+            ->addOrderBy('q.id', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+    public function findByMovieName(string $movieName): array
+    {
+        return $this->createQueryBuilder('q')
+            ->leftJoin('q.Movie', 'm')
+            ->addSelect('m')
+            ->where('m.name LIKE :movieName')
+            ->setParameter('movieName', '%'.$movieName.'%')
+            ->getQuery()
+            ->getResult();
+    }
+}
+
     //    /**
     //     * @return Quote[] Returns an array of Quote objects
     //     */
@@ -31,13 +53,4 @@ class QuoteRepository extends ServiceEntityRepository
     //        ;
     //    }
 
-    //    public function findOneBySomeField($value): ?Quote
-    //    {
-    //        return $this->createQueryBuilder('q')
-    //            ->andWhere('q.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
-}
+    //    public function findOneBySomeField($value): ?Q

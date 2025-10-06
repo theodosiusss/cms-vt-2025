@@ -15,10 +15,18 @@ use Symfony\Component\Routing\Attribute\Route;
 final class QuoteController extends AbstractController
 {
     #[Route(name: 'app_quote_index', methods: ['GET'])]
-    public function index(QuoteRepository $quoteRepository): Response
+    public function index(Request $request,QuoteRepository $quoteRepository): Response
     {
+
+        $search = $request->query->get('search');
+        if ($search) {
+            $data = $quoteRepository->findByMovieName($search);
+        }else{
+            $data = $quoteRepository->findAllOrderedByMovieName();
+        }
         return $this->render('quote/index.html.twig', [
-            'quotes' => $quoteRepository->findAll(),
+            'quotes' => $data,
+            "search" => $search,
         ]);
     }
 
@@ -78,4 +86,5 @@ final class QuoteController extends AbstractController
 
         return $this->redirectToRoute('app_quote_index', [], Response::HTTP_SEE_OTHER);
     }
+
 }
