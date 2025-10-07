@@ -28,7 +28,7 @@ class Movie
     /**
      * @var Collection<int, Quote>
      */
-    #[ORM\OneToMany(targetEntity: Quote::class, mappedBy: 'Movie', orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: Quote::class, mappedBy: 'Movie', cascade: ['persist', 'remove'], orphanRemoval: true)]
     #[Groups(['movie:read'])]
     private Collection $quotes;
 
