@@ -21,7 +21,7 @@ class QuoteRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('q')
             ->leftJoin('q.Movie', 'm')
             ->addSelect('m')
-            ->orderBy('m.name', 'ASC')
+            ->orderBy('LOWER(m.name)', 'ASC')
             ->addOrderBy('q.id', 'ASC')
             ->getQuery()
             ->getResult();
@@ -31,7 +31,7 @@ class QuoteRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('q')
             ->leftJoin('q.Movie', 'm')
             ->addSelect('m')
-            ->where('m.name LIKE :movieName')
+            ->where('LOWER(m.name) LIKE :movieName')
             ->setParameter('movieName', '%'.$movieName.'%')
             ->getQuery()
             ->getResult();
