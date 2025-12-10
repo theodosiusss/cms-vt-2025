@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Funny Input</h1>
+
+    {{ form_start(form) }}
+
+    {{ form_row(form.name) }}
+    {{ form_row(form.date) }}
+    {{ form_row(form.funnyNumber) }}
+
+    <button type="submit">Absenden</button>
+
+    {{ form_end(form) }}
+
+    {# Optional: Flash Messages anzeigen #}
+    {% for message in app.flashes('success') %}
+        <div class="flash-success">{{ message }}</div>
+    {% endfor %}
+{% endblock %}
