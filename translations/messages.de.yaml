@@ -1,0 +1,16 @@
+login.title: "Einloggen!"
+logged.in.as: "Sie sind angemeldet als"
+login.please: "Bitte melden Sie sich an"
+login.email: "E-Mail"
+login.password: "Passwort"
+login.sign.in: "Anmelden"
+logout: "Abmelden"
+login: "Login"
+
+nice:
+    that:
+        you:
+            are:
+                here: "Schön, dass du wieder da bist."
+welcome: "Willkommen"
+

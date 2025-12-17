@@ -1,20 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Willkommen{% endblock %}
+{% block title %}{{ 'welcome'    |trans }} {% endblock %}
 
 {% block body %}
     <div >
-        <h1>Willkommen, {{ user.firstname ?? user.email }}!</h1>
+        <h1>{{ 'welcome'    |trans }}, {{ user.firstname ?? user.email }}!</h1>
 
         <p style="margin-top: 15px; font-size: 1.1em;">
-            Schön, dass du wieder da bist.
+            {{ 'nice.that.you.are.here' |trans }}
         </p>
 
         <div style="margin-top: 25px;">
             <a href="{{ path('app_logout') }}"
                style="padding: 10px 20px; background: #d9534f; color: #fff;
                       border-radius: 6px; text-decoration: none;">
-                Logout
+                {{ 'logout' |trans }}
             </a>
         </div>
     </div>

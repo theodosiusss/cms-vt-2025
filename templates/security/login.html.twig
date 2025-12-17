@@ -1,8 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}{{ 'login.title' |trans }}{% endblock %}
 
 {% block body %}
+    <div class="lang-dropdown">
+        <button class="lang-trigger">
+            <img
+                src="https://flagcdn.com/{{ app.request.locale == 'en' ? 'gb' : app.request.locale }}.svg"
+                alt="{{ app.request.locale }}"
+            />
+            <span class="arrow">▾</span>
+        </button>
+
+        <div class="lang-menu">
+            <a href="{{ path('app_login', {_locale: 'en'}) }}">
+                <img src="https://flagcdn.com/gb.svg" alt="English">
+                English
+            </a>
+
+            <a href="{{ path('app_login', {_locale: 'de'}) }}">
+                <img src="https://flagcdn.com/de.svg" alt="German">
+                Deutsch
+            </a>
+        </div>
+    </div>
+
     <form method="post">
         {% if error %}
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -10,14 +32,14 @@
 
         {% if app.user %}
             <div class="mb-3">
-                You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                {{ 'logged.in.as' |trans }}  {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">{{ 'logout' |trans }}</a>
             </div>
         {% endif %}
 
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-        <label for="username">Email</label>
+        <h1 class="h3 mb-3 font-weight-normal">{{ 'login.please' |trans }}</h1>
+        <label for="username">{{ 'login.email' |trans }}</label>
         <input type="email" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="email" required autofocus>
-        <label for="password">Password</label>
+        <label for="password">{{ 'login.password' |trans }}</label>
         <input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required>
         <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
 
@@ -32,7 +54,7 @@
         #}
 
         <button class="btn btn-lg btn-primary" type="submit">
-            Sign in
+            {{ 'login.sign.in' |trans }}
         </button>
     </form>
 {% endblock %}

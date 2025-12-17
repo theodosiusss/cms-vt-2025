@@ -37,7 +37,6 @@ security:
                 default_target_path: user_welcome
             logout:
                 path: app_logout
-                target: app_login
                 # where to redirect after logout
                 # target: app_any_routea
 

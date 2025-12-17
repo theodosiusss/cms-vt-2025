@@ -13,7 +13,10 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[Route('/user')]
+#[Route(path: [
+    'en' => '/user',
+    'de' => '/benutzer',
+],)]
 final class UserController extends AbstractController
 {
     #[Route(name: 'app_user_index', methods: ['GET'])]
@@ -23,7 +26,11 @@ final class UserController extends AbstractController
             'users' => $userRepository->findAll(),
         ]);
     }
-    #[Route('/welcome', name: 'user_welcome')]
+
+    #[Route(path: [
+        'en' => '/welcome',
+        'de' => '/wilkommen'
+    ], name: 'user_welcome')]
     #[IsGranted('ROLE_USER')]
     public function welcome(): Response
     {
@@ -40,7 +47,6 @@ final class UserController extends AbstractController
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
-
 
 
         if ($form->isSubmitted() && $form->isValid()) {

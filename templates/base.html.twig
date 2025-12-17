@@ -15,11 +15,11 @@
 <body>
 {% if app.user %}
     <div class="mb-3">
-        <a href="{{ path('app_logout') }}">Logout</a>
+        <a href="{{ path('app_logout') }}">{{ 'logout' |trans }}</a>
     </div>
     {% else %}
         <div class="mb-3">
-            <a href="{{ path('app_logout') }}">Login</a>
+            <a href="{{ path('app_logout') }}">{{ 'login' |trans }}</a>
         </div>
 {% endif %}
 {% block body %}{% endblock %}
